@@ -1,0 +1,198 @@
+header ul li a{               
+    position:relative;                                
+}
+header ul li a:hover{               
+    color:#FF0707;                                
+}
+header ul li a::after{
+    content: '';
+    position:absolute;
+    width:0%;
+    height:3px;
+    background: linear-gradient(270deg, rgba(74, 70, 255, 0.85) 33.03%, rgba(255, 13, 13, 0.85) 49.95%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    left:0;
+    bottom:-6px;
+    transition: 0.5s;
+}
+
+header ul li a:hover::after{
+    width: 100%;
+}
+
+.line-grad{
+    background: linear-gradient(270deg, rgba(74, 70, 255, 0.85) 33.03%, rgba(255, 13, 13, 0.85) 49.95%);
+}
+
+/* .scroller{
+    max-width:800px;
+    margin: auto;
+} */
+
+.scroller-inner {
+    gap: 3rem;
+    padding-block: 1rem;
+    display: flex;
+    flex-wrap: wrap
+}
+.scroller-inner img{
+ max-height:100px;
+ object-fit: contain;
+ cursor: pointer;
+ -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+ 
+}
+.scroller-inner img:hover{
+    transform: scale(1.1);
+    
+}
+.scroller[data-animated="true"] {
+    overflow:hidden;
+    -webkit-mask: linear-gradient(
+        90deg,
+        transparent,
+        white 20%,
+        white 80%,
+        transparent
+    );
+   mask: linear-gradient(
+        90deg,
+        transparent,
+        white 20%,
+        white 80%,
+        transparent
+    );
+}
+
+.scroller[data-animated="true"] .scroller-inner {
+    /* width: max-content; */
+    flex-wrap: nowrap;
+    animation: scroll 40s linear infinite;
+}
+@keyframes scroll {
+    to {
+        transform: translate(calc(-50% - 0.5rem))
+    }
+}
+.gallery{
+    -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+}
+.gallery img:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* register, know more button */
+
+.button {
+    background: linear-gradient(257deg, #8C0E26 12.26%, #00042A 104.02%);
+    color: #fff;
+    /* border-radius: 5px; */
+    border-top-right-radius:5px ;
+    border-bottom-left-radius: 5px;
+    /* border: 1px solid #fff; */
+    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+ 
+}
+.register:hover {
+    border: 2px double transparent;
+    color: #fff;
+    background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)), radial-gradient(circle at left top, #FE34B9, #FF26B9, #D434FE, #903AFF);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+.scroll-up{
+    opacity: 0;
+    visibility: hidden;
+    filter: blur(5px);
+    transition: all 1s;
+}
+.scroll-up.slide{
+    opacity: 1;
+    visibility: visible;
+    filter: blur(0);
+}
+.scroll-down-left-animation {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-100%);
+  filter: blur(5px);
+  transition: opacity 1s,transform 2s;
+}
+.scroll-down-right-animation {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-70%);
+  filter: blur(5px);
+  transition: opacity 1s, transform 2s;
+  transition-delay: 100ms;
+}
+.scroll-down-left-animation.slide {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+    filter: blur(0);
+    
+}
+.scroll-down-right-animation.slide {
+    opacity: 1;
+    transform: translate(0);
+    visibility: visible;
+    filter: blur(0);
+}
+.del:nth-child(2){
+    transition-delay: 200ms;
+}
+.del:nth-child(3){
+    transition-delay: 400ms;
+
+}
+.del:nth-child(4){
+    transition-delay: 600ms;
+
+}
+.del:nth-child(4){
+    transition-delay: 800ms;
+
+}
+
+.focus .card{
+    box-shadow: 5px 10px 8px 0px #00D1FF
+}
+
+.body-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1010;
+    left: 0;
+    opacity: 0;
+    display: none;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+  }
+  
+  .body-overlay.active {
+    opacity: 1;
+    display: block;
+  }
+  .on-side {
+    overflow: hidden;
+  }
+  .nav-bar.show {
+    right: 0;
+  }
