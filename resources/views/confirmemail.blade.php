@@ -17,9 +17,9 @@ GOALPrime Nigeria - A Better Humanity is Possible
                     <p class="stepIndicator text-center flex-1 pb-8 relative">(Step 1)</p>
                 </div>
             
-    <form id="signUpForm" class="p-12 py-3  shadow-md rounded-2xl bg-black mx-auto border-solid border-2 border-gray-100 mb-8"  action="{{ route('confirmemailsave2') }}" method="POST">
+                <form id="signUpForm" class="p-12 py-3  shadow-md rounded-2xl bg-black mx-auto border-solid border-2 border-gray-100 mb-8"  action="{{ route('confirmemailsave2') }}" method="POST">
         <!-- start step indicators -->
-         @csrf
+        @csrf
         <div class="form-header flex gap-3 mb-4 text-xs text-center">
             <span class="stepIndicator flex-1 pb-8 relative"> </span>
             <span class="stepIndicator flex-1 pb-8 relative"> </span>
@@ -28,15 +28,17 @@ GOALPrime Nigeria - A Better Humanity is Possible
         <!-- end step indicators -->
     
         <!-- step one -->
-        <div class="items-center md:hidden hidden md:block">
-            <p class="stepIndicator flex-1 pb-8 relative">Confirm your Email Address</p>
+        <div class="step items-center">
+            <p class="stepIndicator flex-1 pb-8 relative ">Confirm your Email Address</p>
             <div class="mb-6">
-                  <input type="email" placeholder="Email Address" name="email" 
+            <input type="email" placeholder="Email Address" name="email" 
 						 class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" />
             </div>
             
-                      
+           
         </div>
+    
+        
         
     
         <!-- start previous / next buttons -->

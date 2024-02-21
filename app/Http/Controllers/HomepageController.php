@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Validation\ValidationException;
+use Session;
 use Illuminate\Http\Request;
 use App\Models\Gallery;
 use App\Models\User;
@@ -24,6 +25,7 @@ class HomepageController extends Controller
     }
     //
     public function confirmemail(){
+
         return view('confirmemail');
     }
     //
@@ -63,8 +65,8 @@ class HomepageController extends Controller
              $sendvolun->to('info@goalprime.org');
              $sendvolun->subject('New Volunteer');
           }); */
-  
-          
+          Session::put('email', $request->email);
+          //$user = session()->get($request->email);
           return view('resendconfirmemail');
   
          // }
@@ -167,24 +169,38 @@ protected function checkCodeValidity($user,$addMin = 2)
     }
 
 
-         */
+     */
     }
 
     public function emailVerification(Request $request)
     {
+        $user = session()->get('email');
+        if ($user) {
+            $useremail = User::where('email', $user)->first();
+        } else {
+            $useremail = null;
+        }
         $request->validate([
             'code'=>'required'
         ]);
 
-        $user = auth()->user();
-
-        if ($user->ver_code == $request->code) {
-            $user->ev = 1;
-            $user->ver_code = null;
-            $user->ver_code_send_at = null;
-            $user->save();
-            return to_route('user.home');
+       // $user2 = auth()->user();
+       //$useremail->ver_code 
+        if ( $useremail->ver_code == $request->code) {
+          /*  $useremail->ev = 1;
+            $useremail->ver_code = null;
+            $useremail->ver_code_send_at = null;
+            $useremail->save();*/
+            return view('registration'); 
         }
-        throw ValidationException::withMessages(['code' => 'Verification code didn\'t match!']);
+        $request->session()->flash('success', 'Error! Code not correct');
+       return view('resendconfirmemail')->with('success', 'Code not correct');
+        //return view('esendconfirmemailr');
+    }
+
+    public function logout(){
+      //  HomepageController::logout();
+        Session::flush();
+        return to_route('/'); 
     }
 }

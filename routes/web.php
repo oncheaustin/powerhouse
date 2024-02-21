@@ -20,4 +20,6 @@ Route::get('/confirmemail','App\Http\Controllers\HomepageController@confirmemail
 Route::get('/resendconfirmemail','App\Http\Controllers\HomepageController@resendconfirmemail')->name('resendconfirmemail');
 Route::get('/thankyou','App\Http\Controllers\HomepageController@thankyou')->name('thankyou');
 Route::post('/confirmemailsave','App\Http\Controllers\HomepageController@confirmemailsave')->name('confirmemailsave2');
+Route::post('/verifyemail','App\Http\Controllers\HomepageController@emailVerification')->name('verifyemail2');
+Route::get('/logout','App\Http\Controllers\HomepageController@logout')->name('logout');
 

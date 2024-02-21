@@ -53,6 +53,10 @@ GOALPrime Nigeria - A Better Humanity is Possible
                   <input type="text" placeholder="Preferred POWERHOUSE Nickname" name="nickname" 
 						 class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'" />
             </div>
+            <div class="mb-6"> <label> Email: <span style="color:red">*</span></label>
+                  <input type="text" placeholder="Email" name="email" value="{{ session()->get('email') }}"
+						 class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" readonly/>
+            </div>
             <div class="mb-6"> <label>Phone Number: <span style="color:red">*</span></label>
                   <input type="number" placeholder="Phone number to contact you" name="phone" 
 						 class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'" />

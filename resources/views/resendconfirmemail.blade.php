@@ -16,27 +16,33 @@ GOALPrime Nigeria - A Better Humanity is Possible
                 <img src="assets/img/logo-words.png" alt="" class=" w-[100px] lg:w-[300px]">
                     </div>
                     <h1 class="font-inknut text-center text-4xl pb-5 text-white scroll-down-right-animation">CONFIRMATION EMAIL</h1>
-                    
                 </div>
             
-    <form id="signUpForm" method=" " class="submit-form p-12 py-3  shadow-md rounded-2xl bg-black mx-auto border-solid border-2 border-gray-100 mb-8" action="/registration">
+    <form id="signUpForm"  class="submit-form p-12 py-3  shadow-md rounded-2xl bg-black mx-auto border-solid border-2 border-gray-100 mb-8" action="{{ route('verifyemail2') }}" method="POST">
         <!-- start step indicators -->
-     
+        @csrf
         <!-- end step indicators -->
     
         <!-- step one -->
-       
+        @if (session()->has('success'))
+<div class="flex items-center justify-center" id="alert">
+    <strong style="color:red"> {{session()->get('success')}}</strong>
+</div>
+    @endif
+
         <div class="py-6 ">
                     <h1 class="   text-bold text-lg text-center text-white font-bold title font-inkut">
                         Thank you for <br>
                         your interest in <br>
                         POWERHOUSE.
                     </h1>
+                    <p>Your email: <i class="fw-bold base--color">{{ session()->get('email') }}</i></p>
+
                 </div>    
                 <div id="otp" class="flex flex-row justify-center  px-2 mt-5">
 
             <input 
-  type="text" style="color:black" id="code"
+  type="text" name="code" style="color:black" id="code"
   autocomplete="one-time-code"
   inputmode="numeric"
   maxlength="6"
