@@ -37,6 +37,7 @@ class User extends Authenticatable
         'email',
         'ver_code_send_at',
         'ver_code',
+        'status',
         'password',
     ];
 

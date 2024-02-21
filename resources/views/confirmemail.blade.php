@@ -20,6 +20,8 @@ GOALPrime Nigeria - A Better Humanity is Possible
                 <form id="signUpForm" class="p-12 py-3  shadow-md rounded-2xl bg-black mx-auto border-solid border-2 border-gray-100 mb-8"  action="{{ route('confirmemailsave2') }}" method="POST">
         <!-- start step indicators -->
         @csrf
+       
+  
         <div class="form-header flex gap-3 mb-4 text-xs text-center">
             <span class="stepIndicator flex-1 pb-8 relative"> </span>
             <span class="stepIndicator flex-1 pb-8 relative"> </span>
@@ -29,6 +31,11 @@ GOALPrime Nigeria - A Better Humanity is Possible
     
         <!-- step one -->
         <div class="step items-center">
+        @if (session()->has('error'))
+<div class="flex items-center justify-center" id="alert">
+    <strong style="color:red"> {{session()->get('error')}}</strong>
+</div>
+    @endif
             <p class="stepIndicator flex-1 pb-8 relative ">Confirm your Email Address</p>
             <div class="mb-6">
             <input type="email" placeholder="Email Address" name="email" 

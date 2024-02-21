@@ -16,7 +16,7 @@ GOALPrime Nigeria - A Better Humanity is Possible
                     <p class="stepIndicator text-center flex-1 pb-8 relative">(Step 2)</p>
                 </div>
             
-    <form id="signUpForm" class="p-12 py-3  shadow-md rounded-2xl bg-black mx-auto border-solid border-2 border-gray-100 mb-8" action="/thankyou">
+    <form id="signUpForm"  class="submit-form p-12 py-3  shadow-md rounded-2xl bg-black mx-auto border-solid border-2 border-gray-100 mb-8" action="{{ route('registrationsave2') }}" method="POST">
         <!-- start step indicators -->
         <div class="form-header flex gap-3 mb-4 text-xs text-center">
             <span class="stepIndicator flex-1 pb-8 relative">Profile </span>
@@ -24,7 +24,7 @@ GOALPrime Nigeria - A Better Humanity is Possible
             <span class="stepIndicator flex-1 pb-8 relative"> Submit</span>
         </div>
         <!-- end step indicators -->
-    
+        @csrf
         <!-- step one -->
         <div class="step">
             <p class="text-md text-gray-700 leading-tight text-center mt-8 mb-5"><span style="color:red">Please fill all the mandatory filed (marked by *)</span></p>

@@ -45,9 +45,13 @@ class HomepageController extends Controller
              
            //   'recaptcha' => ['required']
           ]);
-         // if ($request->hiddenrecaptcha != $request->recaptcha) {
-          //    return back()->with('error', 'Sorry Invalid Recaptcha Code');
-        //  }else {
+          $useremail = User::where('email', $request->email)->first();
+         if ($useremail != null) {
+            //return back()->with('error', 'Sorry Invalid Recaptcha Code');
+            $request->session()->flash('error', 'Error! Email already exist');
+            return view('confirmemail');
+
+        }else {
                User::create([
                
                'email' => $request->email,
@@ -69,7 +73,7 @@ class HomepageController extends Controller
           //$user = session()->get($request->email);
           return view('resendconfirmemail');
   
-         // }
+          }
 
 
 
@@ -198,9 +202,48 @@ protected function checkCodeValidity($user,$addMin = 2)
         //return view('esendconfirmemailr');
     }
 
+    public function registrationsave(Request $request)
+    {
+        $user = session()->get('email');
+        if ($user) {
+            $useremail = User::where('email', $user)->first();
+        } else {
+            $useremail = null;
+        }
+        $request->validate([
+            'fname'=>'required',
+            'lname'=>'required'
+        ]);
+
+      
+            $useremail->fname = $request->fname;
+            $useremail->lname = $request->fname;
+            $useremail->othername = $request->othername;
+            $useremail->nickname = $request->nickname;
+            $useremail->gender = $request->gender;
+            $useremail->phone = $request->phone;
+            $useremail->country = $request->country;
+            $useremail->state = $request->state;
+            $useremail->lga = $request->lga;
+            $useremail->occupation = $request->dobirth;
+            $useremail->relationship = $request->relationship;
+            $useremail->dobirth = $request->dobirth;
+            $useremail->noking = $request->noking;
+            $useremail->bio = $request->bio;
+            $useremail->identification = $request->identifiation;
+            $useremail->id_upload = $request->id_upload;
+            $useremail->video_upload = $request->video_upload;
+            $useremail->status = 1;
+            $useremail->save();
+      
+        //$request->session()->flash('success', 'Error! Code not correct');
+       return view('thankyou')->with('success', 'Completed');
+        //return view('esendconfirmemailr');
+    }
+
     public function logout(){
       //  HomepageController::logout();
         Session::flush();
-        return to_route('/'); 
+        return to_route('instruction'); 
     }
 }
