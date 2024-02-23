@@ -23,4 +23,8 @@ Route::post('/confirmemailsave','App\Http\Controllers\HomepageController@confirm
 Route::post('/registrationsave','App\Http\Controllers\HomepageController@registrationsave')->name('registrationsave2');
 Route::post('/verifyemail','App\Http\Controllers\HomepageController@emailVerification')->name('verifyemail2');
 Route::get('/logout','App\Http\Controllers\HomepageController@logout')->name('logout');
+Route::get('admin/login','App\Http\Controllers\HomepageController@adminlogin')->name('adminlogin');
+Route::post('loginpost','App\Http\Controllers\HomepageController@loginpost')->name('loginpost');
+Route::get('admin/dashboard','App\Http\Controllers\HomepageController@admindashboard')->name('admindashboard');
+Route::get('admin/registered','App\Http\Controllers\HomepageController@registered')->name('applicantregistered');
 

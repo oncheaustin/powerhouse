@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Mail;
 use Session;
 use Illuminate\Http\Request;
 use App\Models\Gallery;
@@ -15,6 +16,15 @@ class HomepageController extends Controller
         return view('home')->with('galleries',Gallery::all());
     }
 
+    //admin login
+    public function adminlogin(){
+        return view('admin.login');
+    }
+
+       //admin dashboard
+       public function admindashboard(){
+        return view('admin.dashboard');
+    }
     //
     public function instruction(){
         return view('instruction');
@@ -32,8 +42,14 @@ class HomepageController extends Controller
     public function resendconfirmemail(){
         return view('resendconfirmemail');
     }
+    //thank you page
     public function thankyou(){
         return view('thankyou');
+    }
+
+    //registered applicants
+    public function registered(){
+        return view('admin.registered')->with('allusers',User::orderBy('created_at','DESC')->get());
     }
 
     //save email
@@ -61,16 +77,19 @@ class HomepageController extends Controller
                'status' => '0'
 
            ]);
-         /*  $message = $request->name." just Volunteer via the Website";
-             Mail::send('mailsend.mail',[
-          'msg' => $message
-          ],function($sendvolun)use($request){
-             $sendvolun->from($request->email,$request->name);
-             $sendvolun->to('info@goalprime.org');
-             $sendvolun->subject('New Volunteer');
-          }); */
-          Session::put('email', $request->email);
-          //$user = session()->get($request->email);
+           Session::put('email', $request->email);
+           $user = session()->get('email');
+            $useremail = User::where('email', $user)->first();
+                 
+           $code = $useremail->ver_code;
+           $to_name = $request->email;
+           $to_email = $request->email;
+           $data = array('name'=>'$code (sender_name)', "body" => $code);
+           Mail::send('mailsend.mail', $data, function($message) use($to_name, $to_email) {
+           $message->to($to_email, $to_name)->subject('POWERHOUSE Email Verification Code');
+           $message->from('***@goalprime.org','Verification Code');
+           });
+
           return view('resendconfirmemail');
   
           }
